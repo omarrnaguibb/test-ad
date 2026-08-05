@@ -1374,8 +1374,7 @@ const Main = () => {
               </div>
             )}
             <span className="page-title__text">
-              <i className="fas fa-terminal"></i> غرفة التحكم — سلامة
-            </span>
+              <i className="fas fa-terminal"></i> غرفة التحكم             </span>
           </div>
           <div className="top-actions">
             <div className="stats-pill stats-pill--visitors">
