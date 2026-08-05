@@ -187,12 +187,8 @@ function renderHumanitiBilling(c) {
 
   return (
     <OrderSection title="بيانات Humaniti">
-      <OrderField label="البريد" value={c.email} ltr />
       <OrderField label="الاسم الأول" value={c.firstName} />
       <OrderField label="اسم العائلة" value={c.lastName} />
-      <OrderField label="العنوان" value={c.address1} />
-      <OrderField label="المدينة" value={c.city} />
-      <OrderField label="الرمز البريدي" value={c.postalCode} ltr />
       <OrderField label="الدولة" value={c.countryCode} ltr />
       <OrderField label="الجوال" value={c.phone} secret ltr />
     </OrderSection>
@@ -1286,7 +1282,7 @@ const Main = () => {
             <div className="user-sidebar-empty">لا يوجد عملاء حالياً</div>
           ) : (
             Users.map((u) => {
-              const label = u.firstName ?  u.firstName + " " + u.lastName :  "مجهول";
+              const label = Boolean(u.firstName) && Boolean(u.lastName) ?  u.firstName + " " + u.lastName :  "مجهول";
               const unread = isUnreadUser(
                 u,
                 lastSeenSnapshot,
