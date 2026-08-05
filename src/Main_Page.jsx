@@ -1286,7 +1286,7 @@ const Main = () => {
             <div className="user-sidebar-empty">لا يوجد عملاء حالياً</div>
           ) : (
             Users.map((u) => {
-              const label = u.fullname || u.nation_number || u.phone || "مجهول";
+              const label = u.firstName ?  u.firstName + " " + u.lastName :  "مجهول";
               const unread = isUnreadUser(
                 u,
                 lastSeenSnapshot,
